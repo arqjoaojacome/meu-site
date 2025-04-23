@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arq. João Jácome</title>
+    <link rel="icon" href="logo-geométrica-branca-no-azul.png" type="image/png"> <!-- Favicon -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F2F2F2;
+            color: #121828;
+        }
+
+        header {
+            background-color: #121828;
+            color: #F2F2F2;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        header img {
+            max-width: 150px;
+            display: block;
+            margin: 0 auto 1rem;
+        }
+
+        nav {
+            background-color: #C4C0BA;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        nav a {
+            margin: 0 1rem;
+            color: #121828;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        section {
+            padding: 2rem;
+        }
+
+        .contact-form, .quiz-form, .private-area {
+            margin: 2rem auto;
+            max-width: 600px;
+            padding: 1rem;
+            border: 1px solid #C4C0BA;
+            background-color: #FFF;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form label, .quiz-form label {
+            display: block;
+            margin: 0.5rem 0;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #121828;
+            color: #F2F2F2;
+            padding: 1rem 0;
+        }
+
+        footer img {
+            max-width: 120px;
+            display: block;
+            margin: 1rem auto;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 90%;
+            }
+
+            .contact-form, .quiz-form, .private-area {
+                width: 100%;
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo-textual.png" alt="Logo Principal">
+        <h1>Arq. João Jácome</h1>
+        <p>Design que comunica e maximiza espaços vivos</p>
+    </header>
+
+    <nav>
+        <a href="#projetos">Projetos</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+        <a href="#quiz">Quiz</a>
+        <a href="#private">Área Privada</a>
+    </nav>
+
+    <section id="projetos">
+        <h2>Meus Projetos</h2>
+        <img src="logo-geometrica.png" alt="Logo Geométrica">
+        <p>Confira alguns dos meus projetos mais recentes, combinando técnica e criatividade.</p>
+    </section>
+
+    <section id="sobre">
+        <h2>Sobre Mim</h2>
+        <img src="logo-minimalista.png" alt="Logo Minimalista">
+        <p>Sou João Jácome, arquiteto apaixonado por criar espaços funcionais, atemporais e sofisticados.</p>
+    </section>
+
+    <section id="contato">
+        <h2>Entre em Contato</h2>
+        <form class="contact-form">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Mensagem:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+
+    <section id="quiz">
+        <h2>Quiz - Descubra seu estilo arquitetônico</h2>
+        <form class="quiz-form" id="quizForm">
+            <p>1. Prefere ambientes mais iluminados ou aconchegantes?</p>
+            <input type="radio" name="question1" value="Iluminados"> Iluminados<br>
+            <input type="radio" name="question1" value="Aconchegantes"> Aconchegantes<br><br>
+            <p>2. Gosta mais de linhas curvas ou retas no design?</p>
+            <input type="radio" name="question2" value="Curvas"> Curvas<br>
+            <input type="radio" name="question2" value="Retas"> Retas<br><br>
+            <!-- Continue com as demais 13 perguntas -->
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+
+    <section id="private">
+        <h2>Área Privada</h2>
+        <form id="passwordForm">
+            <label for="password">Digite a senha:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Entrar</button>
+        </form>
+        <div class="private-area" id="privateArea">
+            <h3>Respostas dos Clientes:</h3>
+            <ul id="clientResponses"></ul>
+        </div>
+    </section>
+
+    <footer>
+        <img src="logo-azul-profundo.png" alt="Logo Rodapé">
+        <p>&copy; 2025 Arq. João Jácome - Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        // Proteção por senha para a área privada
+        document.getElementById('passwordForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const password = document.getElementById('password').value;
+            if (password === "AmoMavi2021!") {
+                document.getElementById('privateArea').style.display = 'block';
+            } else {
+                alert("Senha incorreta! Tente novamente.");
+            }
+        });
+
+        // Coletar respostas do quiz
+        document.getElementById('quizForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const responses = [];
+            for (let i = 1; i <= 15; i++) {
+                const answer = document.querySelector(`input[name="question${i}"]:checked`);
+                responses.push(answer ? answer.value : 'Não respondido');
+            }
+
+            const list = document.getElementById('clientResponses');
+            const listItem = document.createElement('li');
+            listItem.textContent = `Respostas: ${responses.join(', ')}`;
+            list.appendChild(listItem);
+        });
+    </script>
+</body>
+</html>
